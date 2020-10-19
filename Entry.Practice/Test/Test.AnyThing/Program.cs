@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using System.Text.RegularExpressions;
 
 namespace Test.AnyThing
 {
@@ -6,28 +8,59 @@ namespace Test.AnyThing
     {
         static void Main(string[] args)
         {
+            //{
+            //    string txt = File.ReadAllText(@"C:/Users/Administrator/Desktop/newTest.html");
 
-            {// 内容解析
+            //    string newTxt = Regex.Replace(txt, "style=\"color:#ff0000;[^\"]*\"</style>", match =>
+            //    {
+            //        return "style=\"color:#ff0000; \" class='answer'";
+            //    });
 
-                string data = "<li><u>。。帮</u><u>在</u>的关的<u>问题</u></li>";
+            //}
 
-                for (int i = 0; i < data.Length; i++)
+            //{
+            //    string txt = File.ReadAllText(@"C:/Users/Administrator/Desktop/newTest.html");
+
+            //    string newTxt = Regex.Replace(txt, "style=\"color:#ff0000;[^\"]*\"", match =>
+            //    {
+            //        return "style=\"color:#ff0000; \" class='answer'";
+            //    });
+
+            //    File.WriteAllText(@"C:/Users/Administrator/Desktop/newTest-format.html", newTxt);
+            //}
+
+            {
+                string txt = File.ReadAllText(@"C:/Users/Administrator/Desktop/newTest.html");
+
+                string newTxt = Regex.Replace(txt, @"\d+\.", match =>
                 {
-                    var c = data[i];
-                    if(c == '<')
-                    {
-                        i++;
-                        string flag = GetFlag(data, ref i);
+                    return "<br><br><br>" + match.Value;
+                });
 
-                        if(flag == "li")
-                        {
-
-                        }
-
-                    }
-                }
-
+                File.WriteAllText(@"C:/Users/Administrator/Desktop/newTest-format.html", newTxt);
             }
+
+            //{// 内容解析
+
+            //    string data = "<li><u>。。帮</u><u>在</u>的关的<u>问题</u></li>";
+
+            //    for (int i = 0; i < data.Length; i++)
+            //    {
+            //        var c = data[i];
+            //        if(c == '<')
+            //        {
+            //            i++;
+            //            string flag = GetFlag(data, ref i);
+
+            //            if(flag == "li")
+            //            {
+
+            //            }
+
+            //        }
+            //    }
+
+            //}
 
             Console.WriteLine("Hello World!");
 
